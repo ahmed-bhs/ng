@@ -1,0 +1,53 @@
+<button class="btn btn-primary" (click)="added()" >Ajouter</button>
+<div *ngIf="add" class="alert alert-success box-msg" role="alert">
+<header>
+  <h2>Ajouter une session de formation</h2>
+</header>
+<form #sessionItemForm="ngForm" (ngSubmit)="onSubmit(sessionItemForm.value)">
+  <ul>
+    <li>
+      <label for="name">Name</label>
+      <select name="name" id="name" ngModel required>
+        <option value="Web">Web</option>
+        <option value="Mobile">Mobile</option>
+      </select>
+    </li>
+    <li>
+      <label for="track">Track</label>
+      <select name="track" id="track" ngModel required>
+      <option name="MEAN">MEAN Stack</option>
+      <option name="Romance">Angular</option>
+      <option name="Romance">Node JS</option>
+      <option name="Romance">Symphony</option>
+      <option name="Romance">Laravel</option>
+      <option name="Ionic">Ionic</option>
+      <option name="Android">Android</option>
+      <option name="Xamarin">Xamarin</option>
+      <option name="Swift">Swift</option>
+      </select>
+    </li>
+
+    <i>
+      <label for="date">Date</label>
+      <input type="date" name="date" id="date" ngModel required>
+      <label for="duree">Duree</label>
+      <input type="number" name="duree" id="duree" ngModel required>
+    </i>
+
+    <i>
+      <label for="local">Localisation</label>
+      <input type="text" name="local" id="local" ngModel #local="ngModel" required minlength="4">
+      <div [hidden]=" local.valid || local.pristine">
+        Minimum 4
+      </div>
+    </i>
+
+    <i>
+      <label for="participants">Participants</label>
+      <input type="number" name="participants" id="participants" ngModel required>
+    </i>
+  </ul>
+
+  <button type="submit" [disabled]="!sessionItemForm.form.valid">Save</button>
+</form>
+</div>
